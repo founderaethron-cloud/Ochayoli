@@ -1,9 +1,9 @@
 const artists = [
-  { name: 'Farsida', letter: 'F', tag: 'Hip-hop / Composer / Producer', bio: 'Farsin Sidhu. A multilingual, genre-fluid artist and producer from Kerala, always in pursuit of the next sound.' },
-  { name: 'Jarvie G', letter: 'J', tag: 'Hip-hop / Film', bio: 'A screen performer bringing his own raw, streetwise energy into Malayalam hip-hop.' },
-  { name: 'Kazee', letter: 'K', tag: 'Freestyle / MC', bio: 'Periyar roots. Freestyle instinct. Local stories delivered with unmistakable grit.' },
-  { name: 'NAN6', letter: 'N', tag: 'Urban / Folk-influenced hip-hop', bio: 'From Alappad to Kochi, turning lived experience and identity into collective sound.' },
-  { name: 'Lostix', letter: 'L', tag: 'Hard techno / EDM', bio: 'Industrial rhythms, hypnotic grooves, and an electronic sound designed to leave an imprint.' }
+  { name: 'Farsida', letter: 'F', tag: 'Multilingual producer · Kerala', bio: 'Farsin Sidhu. A producer moving between languages and textures, building beats that let Malayalam sit alongside other tongues without losing its edge.' },
+  { name: 'Jarvie G', letter: 'J', tag: 'Actor / hip-hop artist · Kerala', bio: 'A screen performer bringing his own raw, streetwise energy into Malayalam hip-hop.' },
+  { name: 'Kazee', letter: 'K', tag: 'Freestyle MC · Periyar', bio: 'Periyar roots. Freestyle instinct. Local stories delivered with unmistakable grit.' },
+  { name: 'NAN6', letter: 'N', tag: 'Folk-influenced artist · Kochi / Alappad', bio: 'From Alappad to Kochi, turning lived experience and identity into collective sound.' },
+  { name: 'Lostix', letter: 'L', tag: 'Hard techno / EDM producer · Kerala', bio: 'Industrial rhythms, hypnotic grooves, and an electronic sound designed to leave an imprint.' }
 ];
 
 const releases = [
@@ -16,21 +16,20 @@ const artistGrid = document.querySelector('[data-artist-grid]');
 const releaseGrid = document.querySelector('[data-release-grid]');
 
 artistGrid.innerHTML = artists.map((artist, index) => `
-  <article class="artist-card" data-letter="${artist.letter}">
-    <div class="artist-card__top"><span>${String(index + 1).padStart(2, '0')} / Artist</span><span>O'Flow</span></div>
-    <div class="artist-card__bottom">
-      <div><h3>${artist.name}</h3><p class="artist-card__tag">${artist.tag}</p></div>
-      <button class="artist-card__open" type="button" aria-label="Open ${artist.name} profile" data-artist="${artist.name}">↗</button>
-    </div>
+  <article class="artist-row">
+    <span class="artist-row__number mono">${String(index + 1).padStart(2, '0')}</span>
+    <h3>${artist.name}</h3>
+    <p class="artist-row__tag mono">${artist.tag}</p>
+    <button class="artist-row__open" type="button" aria-label="Open ${artist.name} profile" data-artist="${artist.name}">↗</button>
   </article>
 `).join('');
 
-releaseGrid.innerHTML = releases.map((release) => `
+releaseGrid.innerHTML = releases.map((release, index) => `
   <article class="release-card">
-    <div class="release-card__art" role="img" aria-label="Illustrative placeholder artwork for ${release.title}"><span class="release-card__title">${release.title.replace(' ', '<br />')}</span></div>
-    <h3>${release.title}</h3>
-    <p>${release.artist}</p>
-    <button class="release-card__button" type="button" aria-expanded="false">View catalogue note <span aria-hidden="true">＋</span></button>
+    <span class="release-card__index mono">${String(index + 1).padStart(2, '0')}</span>
+    <h3 class="release-card__title">${release.title}</h3>
+    <p class="release-card__artist mono">${release.artist} · listening link to be added</p>
+    <button class="release-card__button" type="button" aria-expanded="false" aria-label="Show note for ${release.title}">↗</button>
     <p class="release-card__details">${release.detail}</p>
   </article>
 `).join('');
@@ -76,7 +75,8 @@ releaseGrid.addEventListener('click', (event) => {
   const card = button.closest('.release-card');
   const isOpen = card.classList.toggle('is-open');
   button.setAttribute('aria-expanded', String(isOpen));
-  button.innerHTML = isOpen ? 'Hide catalogue note <span aria-hidden="true">−</span>' : 'View catalogue note <span aria-hidden="true">＋</span>';
+  button.setAttribute('aria-label', `${isOpen ? 'Hide' : 'Show'} note for ${card.querySelector('.release-card__title').textContent}`);
+  button.textContent = isOpen ? '−' : '↗';
 });
 
 document.querySelector('[data-inquiry-form]').addEventListener('submit', async (event) => {
