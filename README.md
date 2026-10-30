@@ -1,34 +1,54 @@
 # OCHAYOLI — music label website
 
-An editorial, responsive website for Ochayoli and its O'Flow artist collective.
+An editorial, responsive static website for Ochayoli and its O'Flow collective.
 
-## Preview locally
+## What is included
 
-Open `index.html` in a browser. No package install or build command is required.
+- Semantic responsive homepage with label story, O'Flow manifesto, live placeholder, and contact workflow.
+- Five artist profile cards with accessible modal profiles: Farsida, Jarvie G, Kazee, NAN6, and Lostix.
+- Selected-track catalogue cards for Thuvvak, Laav, and Melle Panjo.
+- Illustrative CSS/SVG artwork clearly marked as placeholder material.
+- Mobile navigation, keyboard-friendly controls, reduced-motion support, metadata, favicon, Open Graph poster, robots.txt, and sitemap.xml.
+- Dependency-free smoke test and build check.
 
-## Sections
+## Local preview
 
-- Homepage and brand introduction
-- O'Flow artist roster (Farsida, Jarvie G, Kazee, NAN6, Lostix)
-- Selected tracks (clearly labeled illustrative cover artwork)
-- O'Flow manifesto and label story
-- Events placeholder
-- Inquiry draft form (copies text; does not transmit to a server)
+Open `index.html` directly, or serve the repository with any static file server. For a quick local server with Node.js:
 
-## Editorial source
+```text
+npx serve .
+```
 
-The user-supplied *O'Flow Curated Set* is the reference for the collective, its artists and the track names. This site intentionally does not invent official artist photography, release artwork, stream URLs, concerts, or contact addresses.
+Run the repository checks with:
 
-## Deploying
+```text
+npm test
+npm run build
+```
 
-This version is a static site. In Hostinger, upload `index.html` to the website root's `public_html` folder, or use a supported Git-based static deployment. Connect your domain and enable HTTPS. The repository can also be published via GitHub Pages when desired.
+The `build` script is intentionally a validation step because this is a buildless static site; no bundling or runtime dependency is required.
 
-## Before going live
+## Source and editorial guardrails
 
-1. Confirm approval of brand colors, wording and artist biographies.
-2. Replace illustrative artwork with approved images and official credits.
-3. Add streaming links and an official contact address or properly configured form backend.
-4. Confirm rights for all music, photography and graphics.
-5. Test mobile navigation, content, accessibility and links.
+The existing O'Flow-derived repository copy is the source of truth for the collective, its artists, and the three track names. This site does not invent official artist photography, release artwork, streaming URLs, event dates, contact addresses, testimonials, or performance claims. Those items remain visibly marked as pending verification.
 
-This is a fast-launch static first version, not yet a Next.js/Codex application. A richer application can be developed on top of the approved design.
+Before launch, confirm:
+
+1. Artist names, biographies, spellings, credits, and approved imagery.
+2. Official streaming links, release dates, and cover art.
+3. Event details and the preferred contact destination.
+4. Rights for music, photography, logos, and commissioned graphics.
+5. The production domain; replace the `example.com` placeholders in `robots.txt` and `sitemap.xml`.
+
+## Hostinger deployment
+
+This is a static site and does not need Node.js hosting in production.
+
+1. Run `npm test` and `npm run build` locally.
+2. In Hostinger hPanel, open the target website's file manager or FTP connection.
+3. Upload the repository contents to the website root, normally `public_html`, including `index.html`, `styles.css`, `script.js`, SVG files, `robots.txt`, and `sitemap.xml`.
+4. If using Git deployment, connect the repository and configure the document root to the directory containing `index.html`; no build command is required.
+5. Enable SSL and the HTTPS redirect, then verify the home page, mobile navigation, artist dialogs, release notes, and inquiry-copy flow on a real domain.
+6. Replace placeholder domain values and all pending editorial content before announcing the site.
+
+The inquiry form intentionally does not transmit or store data. Configure an approved backend or official email destination only after the label confirms the desired contact workflow.
