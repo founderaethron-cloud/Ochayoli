@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ochayoli.in/sitemap.xml
