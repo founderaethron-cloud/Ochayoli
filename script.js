@@ -40,15 +40,27 @@ releaseGrid.addEventListener('click', (event) => {
   button.textContent = isOpen ? '−' : '↗';
 });
 
-document.querySelector('[data-inquiry-form]').addEventListener('submit', async (event) => {
+const inquiryForm = document.querySelector('[data-inquiry-form]');
+const inquiryStatus = document.querySelector('[data-form-status]');
+const inquiryButton = inquiryForm.querySelector('button[type="submit"]');
+
+inquiryForm.addEventListener('submit', async (event) => {
   event.preventDefault();
-  const form = new FormData(event.currentTarget);
-  const draft = `Ochayoli inquiry\nFrom: ${form.get('name')}\nEmail: ${form.get('email')}\n\n${form.get('message')}`;
-  const status = document.querySelector('[data-form-status]');
+  inquiryButton.disabled = true;
+  inquiryStatus.textContent = 'Sending inquiry…';
   try {
-    await navigator.clipboard.writeText(draft);
-    status.textContent = 'Inquiry copied. Send it through the official contact channel when available.';
-  } catch {
-    status.textContent = 'Copy is unavailable in this browser. Your details have not been sent or stored.';
+    const response = await fetch(inquiryForm.action, {
+      method: 'POST',
+      body: new FormData(inquiryForm),
+      headers: { Accept: 'application/json' }
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || !result.ok) throw new Error(result.message || 'The inquiry could not be sent.');
+    inquiryForm.reset();
+    inquiryStatus.textContent = result.message || 'Inquiry sent to hello@ochayoli.in.';
+  } catch (error) {
+    inquiryStatus.textContent = error.message || 'The inquiry could not be sent. Please try again.';
+  } finally {
+    inquiryButton.disabled = false;
   }
 });

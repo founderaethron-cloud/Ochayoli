@@ -5,7 +5,7 @@ An editorial, responsive static website for Ochayoli and its O'Flow collective.
 ## What is included
 
 - Semantic responsive homepage with label story, O'Flow manifesto, live placeholder, and contact workflow.
-- Five artist profile cards with accessible modal profiles: Farsida, Jarvie G, Kazee, NAN6, and Lostix.
+- O'Flow collective copy currently represents six artists; individual artist sections remain intentionally withheld until the label confirms the final roster presentation.
 - Selected-track catalogue cards for Thuvvak, Laav, and Melle Panjo.
 - Illustrative CSS/SVG artwork clearly marked as placeholder material.
 - Mobile navigation, keyboard-friendly controls, reduced-motion support, metadata, favicon, Open Graph poster, robots.txt, and sitemap.xml.
@@ -30,7 +30,7 @@ The `build` script is intentionally a validation step because this is a buildles
 
 ## Source and editorial guardrails
 
-The existing O'Flow-derived repository copy is the source of truth for the collective, its artists, and the three track names. This site does not invent official artist photography, release artwork, streaming URLs, event dates, contact addresses, testimonials, or performance claims. Those items remain visibly marked as pending verification.
+The existing O'Flow-derived repository copy is the source of truth for the collective, its artists, and the three track names. This site does not invent official artist photography, release artwork, streaming URLs, event dates, testimonials, or performance claims. Those items remain visibly marked as pending verification. The confirmed contact destination is `hello@ochayoli.in`.
 
 Before launch, confirm:
 
@@ -38,7 +38,6 @@ Before launch, confirm:
 2. Official streaming links, release dates, and cover art.
 3. Event details and the preferred contact destination.
 4. Rights for music, photography, logos, and commissioned graphics.
-5. The production domain; replace the `example.com` placeholders in `robots.txt` and `sitemap.xml`.
 
 ## Hostinger deployment
 
@@ -46,9 +45,10 @@ This is a static site and does not need Node.js hosting in production.
 
 1. Run `npm test` and `npm run build` locally.
 2. In Hostinger hPanel, open the target website's file manager or FTP connection.
-3. Upload the repository contents to the website root, normally `public_html`, including `index.html`, `styles.css`, `script.js`, SVG files, `robots.txt`, and `sitemap.xml`.
+3. Upload the repository contents to the website root, normally `public_html`, including `index.html`, `styles.css`, `script.js`, `contact.php`, SVG files, `robots.txt`, and `sitemap.xml`.
 4. If using Git deployment, connect the repository and configure the document root to the directory containing `index.html`; no build command is required.
-5. Enable SSL and the HTTPS redirect, then verify the home page, mobile navigation, artist dialogs, release notes, and inquiry-copy flow on a real domain.
-6. Replace placeholder domain values and all pending editorial content before announcing the site.
+5. Enable SSL and the HTTPS redirect, then verify the home page, mobile navigation, doodle motion, release notes, and contact forwarding on a real domain.
+6. Replace all pending editorial content before announcing the site.
 
-The inquiry form intentionally does not transmit or store data. Configure an approved backend or official email destination only after the label confirms the desired contact workflow.
+The inquiry form posts to `contact.php`, validates the submission server-side, and forwards approved messages to `hello@ochayoli.in` through Hostinger mail delivery. Keep mail credentials and any future database credentials outside GitHub.
+
