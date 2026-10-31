@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "description": "Static Ochayoli music label website and catalogue-first store",
   "scripts": {
-    "test": "node tests/smoke.mjs",
+    "test": "node tests/smoke.mjs && node tests/qikink-contract.mjs",
     "build": "node tests/smoke.mjs"
   }
 }
+
